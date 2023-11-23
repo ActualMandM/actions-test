@@ -10,7 +10,7 @@ jobs:
       issues: write
     steps:
       - name: Detect code from mod
-        uses: actions-ecosystem/action-regex-match@v2
+        uses: KyoriPowered/action-regex-match@v4
         id: regex-match
         with:
           text: ${{ github.event.issue.body }}
