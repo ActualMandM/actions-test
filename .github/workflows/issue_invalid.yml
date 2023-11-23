@@ -6,6 +6,8 @@ on:
 jobs:
   close-issues:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     if: contains(github.event.issue.body, 'Sonic Origins Ultrafix') == true
     steps:
       - name: Create comment
