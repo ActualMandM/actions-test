@@ -8,10 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-    if: [[ contains(github.event.issue.body, '-\s+([A-Za-z0-9]+( [A-Za-z0-9]+)+)\\([A-Za-z0-9]+( [A-Za-z0-9]+)+)') == true ]]
     steps:
+      - name: Detect code from mod
+        uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ github.event.issue.body }}
+          regex: '-\s+([A-Za-z0-9]+( [A-Za-z0-9]+)+)\\([A-Za-z0-9]+( [A-Za-z0-9]+)+)'
       - name: Create comment
         uses: actions-cool/issues-helper@v3
+        if: ${{ steps.regex-match.outputs.match != '' }}
         with:
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -24,6 +30,7 @@ jobs:
             If this issue still persists after that, then contact the author(s) of the mod.
       - name: Add invalid label
         uses: actions-cool/issues-helper@v3
+        if: ${{ steps.regex-match.outputs.match != '' }}
         with:
           actions: 'add-labels'
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -31,12 +38,14 @@ jobs:
           labels: 'invalid'
       - name: Close issue
         uses: actions-cool/issues-helper@v3
+        if: ${{ steps.regex-match.outputs.match != '' }}
         with:
           actions: 'close-issue'
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
       - name: Lock issue
         uses: actions-cool/issues-helper@v3
+        if: ${{ steps.regex-match.outputs.match != '' }}
         with:
           actions: 'lock-issue'
           token: ${{ secrets.GITHUB_TOKEN }}
