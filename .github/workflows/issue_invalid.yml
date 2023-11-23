@@ -17,12 +17,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            This issue was caused by a mod and not by a code from this repository, therefore it is invalid.
+            This issue was caused by a mod and not by a code from this repository.
 
             As a quick troubleshoot, make sure your codes are up to date by going to the Codes tab and clicking Download/Update Community Codes.
             If this issue still persists after that, then contact the author(s) of the mod.
-
-            Closing and locking.
       - name: Add invalid label
         uses: actions-cool/issues-helper@v3
         with:
