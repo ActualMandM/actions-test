@@ -14,7 +14,7 @@ jobs:
         id: regex-match
         with:
           text: ${{ github.event.issue.body }}
-          regex: '^-\s(?:[a-zA-Z &']+\\)+[a-zA-Z &']+$'
+          regex: '^-\s(?:[[a-zA-Z &']]+\\)+[[a-zA-Z &']]+$'
       - name: Create comment
         uses: actions-cool/issues-helper@v3
         if: ${{ steps.regex-match.outputs.match != '' }}
