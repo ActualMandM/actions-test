@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-    if: contains(github.event.issue.body, 'Sonic Origins Ultrafix') == true
+    if: contains(github.event.issue.body, '^-\s(?:[a-zA-Z &']+\\)+[a-zA-Z &']+$') == true
     steps:
       - name: Create comment
         uses: actions-cool/issues-helper@v3
