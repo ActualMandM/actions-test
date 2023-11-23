@@ -13,6 +13,7 @@ jobs:
         with:
           actions: 'create-comment'
           token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
           body: |
             This issue was caused by a mod and not by a code from this repository, therefore it is invalid.
 
@@ -32,8 +33,10 @@ jobs:
         with:
           actions: 'close-issue'
           token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
       - name: Lock issue
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'lock-issue'
           token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
