@@ -6,7 +6,7 @@ on:
 jobs:
   close-issues:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.body, 'Sonic Origins Ultrafix') == false
+    if: contains(github.event.issue.body, 'Sonic Origins Ultrafix') == true
     steps:
       - name: Create comment
         uses: actions-cool/issues-helper@v3
