@@ -6,7 +6,7 @@ on:
 jobs:
   close-issues:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.body, 'Message: Error Compiling Codes') == true
+    if: contains(github.event.issue.body, 'Error Compiling Codes') == true
     permissions:
       issues: write
     steps:
