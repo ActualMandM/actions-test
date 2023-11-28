@@ -1,4 +1,4 @@
-name: Close invalid issue
+name: Close invalid issues
 on:
   issues:
     types: [opened]
